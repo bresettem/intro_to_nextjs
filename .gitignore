@@ -1,2 +1,4 @@
 .vscode
 *.sh
+node_modules/
+.next/

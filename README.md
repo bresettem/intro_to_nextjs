@@ -36,6 +36,10 @@
       - [Managing state](#managing-state)
     - [Chapter 8: From React to Next.js](#chapter-8-from-react-to-nextjs)
       - [From React to Next.js](#from-react-to-nextjs)
+    - [Chapter 9: Installing Next.js](#chapter-9-installing-nextjs)
+      - [Creating your first page](#creating-your-first-page)
+      - [Running the development server](#running-the-development-server)
+      - [Summary](#summary)
 
 ## Learn React
 
@@ -904,10 +908,10 @@ function HomePage() {
   return (
     <div>
       {/* ... */}
-	  <button onClick={}>Like</button>
+      <button onClick={}>Like</button>
     </div>
-     )
-   }
+  )
+}
 ```
 
 Then, you can call the `handleClick` function when the `onClick` event is triggered:
@@ -915,7 +919,7 @@ Then, you can call the `handleClick` function when the `onClick` event is trigge
 ```jsx
 // App.jsx
 function HomePage() {
-  // 	...
+  // ...
   function handleClick() {
     console.log("increment like count");
   }
@@ -1100,3 +1104,184 @@ When it comes to learning React, **the best way to learn is to build**. You can 
 While React excels at building UI, it does take some work to independently build that UI into a fully functioning scalable application. There are also newer React features, like Server and Client Components, that require a framework. The good news is that Next.js handles much of the setup and configuration and has additional features to help you build React applications.
 
 Next, we'll migrate the example from React to Next.js, discuss how Next.js works, and introduce you to the differences between Server and Client Components.
+
+### Chapter 9: Installing Next.js
+
+When you use Next.js in your project, you do not need to load the `react` and `react-dom` scripts from [unpkg.com](http://unpkg.com) anymore. Instead, you can install these packages locally using `npm` or your preferred package manager.
+
+> **Note**: To use Next.js, you will need to have Node.js version **18.17.0** or above installed on your machine ([see minimum version requirement](https://nextjs.org/docs/getting-started/installation)), you can [download it here](https://nodejs.org/en/) .
+
+To do so, create a new file in the same directory as your `index.html` file, called `package.json` with an empty object `{}`.
+
+```json
+// package.json
+{}
+```
+
+In your [terminal](https://code.visualstudio.com/docs/terminal/basics)
+
+, run the following command in the root of your project:
+
+Terminal
+
+```bash
+npm install react@latest react-dom@latest next@latest
+```
+
+Once the installation is complete, you should be able to see your project dependencies listed inside your `package.json` file:
+
+```json
+// package.json
+{
+  "dependencies": {
+    "next": "^14.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
+```
+
+Don't worry if you're on later versions than the ones shown above, as long as you have the `next`, `react`, and `react-dom` packages installed, you're good to go.
+
+You will also notice a new file called `package-lock.json` file that contains detailed information about the exact versions of each package.
+
+Jumping back to the `index.html` file, you can delete the following code:
+
+1. The `<html>` and `<body>` tags.
+2. The `<div>` element with the `id` of `app`.
+3. The `react` and `react-dom` scripts since you've installed them with NPM.
+4. The `Babel` script because Next.js has a compiler that transforms JSX into valid JavaScript browsers can understand.
+5. The `<script type="text/jsx">` tag.
+6. The `document.getElementById()` and `ReactDom.createRoot()` methods.
+7. The `React.` part of the `React.useState(0)` function
+
+After deleting the lines above, add the following import to the top of your file:
+
+```jsx
+// App.jsx
+import { useState } from "react";
+```
+
+Your code should look like this:
+
+```jsx
+// App.jsx
+import { useState } from "react";
+
+function Header({ title }) {
+  return <h1>{title ? title : "Default title"}</h1>;
+}
+
+function HomePage() {
+  const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"];
+
+  const [likes, setLikes] = useState(0);
+
+  function handleClick() {
+    setLikes(likes + 1);
+  }
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship." />
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+
+      <button onClick={handleClick}>Like ({likes})</button>
+    </div>
+  );
+}
+```
+
+The only code left in the HTML file is JSX, so you can change the file type from `.html` to `.js` or `.jsx`.
+
+#### Creating your first page
+
+Next.js uses file-system routing. This means that instead of using code to define the routes of your application, you can use folders and files.
+
+Here's how you can create your first page in Next.js:
+
+1. Create a new folder called [app](https://nextjs.org/docs/app/building-your-application/routing#the-app-router) and move the `index.js` file inside it.
+2. Rename your `index.js` file to `page.js`. This will be the main page of your application.
+3. Add `export default` to your `<HomePage>` component to help Next.js distinguish which component to render as the main component of the page.
+
+```jsx
+// app/page.js;
+import { useState } from "react";
+
+function Header({ title }) {
+  return <h1>{title ? title : "Default title"}</h1>;
+}
+
+export default function HomePage() {
+  // ...
+}
+```
+
+#### Running the development server
+
+Next, let's run your development server so you can see the changes in your new page while developing. Add a `"next dev"` script to your `package.json` file:
+
+```json
+// package.json
+{
+  "scripts": {
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "next": "^14.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
+```
+
+Check what happens by running `npm run dev` in your terminal. You'll notice two things:
+
+> **Note:** If you receive the error `sh: 1: next: not found` when running `npm run dev`, it indicates that Next.js is not installed globally or not installed at all. To resolve this, you can install Next.js globally by running:
+>
+> ```sh
+> npm install -g next
+> ```
+
+1. When you navigate to [localhost:3000](http://localhost:3000), you should see the following error:
+
+   ![Next.js Error Message: You're importing a component that needs useState. It only works in a Client component...](https://nextjs.org/_next/image?url=%2Flearn%2Fdark%2Flearn-usestate-rsc-error.png&w=3840&q=75&dpl=dpl_C4eFQ3UMNdmnjK2STReJ5KTwdjDo)
+
+   This is because Next.js uses React Server Components, a new feature that allows React to render on the server. Server Components don't support `useState`, so you'll need to use a Client Component instead.
+
+   In the next chapter, we'll discuss the main differences between Server and Client Components and fix this error.
+
+2. A new file called `layout.js` was automatically created inside the `app` folder. This is the main layout of your application. You can use it to add UI elements that are shared across all pages (e.g. navigation, footer, etc).
+
+```jsx
+// /app/layout.js
+export const metadata = {
+  title: "Next.js",
+  description: "Generated by Next.js",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+#### Summary
+
+Looking at the migration so far, you may already be getting a sense of the benefits of using Next.js:
+
+- You removed the React and Babel scripts; a taste of the complex tooling and configuration you no longer have to think about.
+- You created your first page.
+
+> **Additional Reading:**
+>
+> - [Next.js Routing Fundamentals](https://nextjs.org/docs/app/building-your-application/routing)
+> - [Defining Routes](https://nextjs.org/docs/app/building-your-application/routing/defining-routes)
+> - [Pages and Layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts)
