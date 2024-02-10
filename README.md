@@ -45,6 +45,10 @@
       - [Network Boundary](#network-boundary)
       - [Using Client Components](#using-client-components)
       - [Summary](#summary-1)
+    - [Chapter 11: Next Steps](#chapter-11-next-steps)
+      - [What's next?](#whats-next)
+      - [Continue learning React](#continue-learning-react)
+      - [Learn Next.js by building a dashboard app](#learn-nextjs-by-building-a-dashboard-app)
 
 ## Learn React
 
@@ -1440,3 +1444,19 @@ To recap, you learned about the server and client environments and when to use e
 > - [Composition Patterns](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
 > - [The "use client" Directive](https://react.dev/reference/react/use-client)
 > - [The "use server" Directive](https://react.dev/reference/react/use-server)
+
+### Chapter 11: Next Steps
+
+Congratulations on creating your first Next.js application!
+
+To summarize, you explored the foundational knowledge for React and Next.js, and you migrated from a simple React Application to a Next.js application.
+
+#### What's next?
+
+#### Continue learning React
+
+Over the years, many courses, videos, and articles have been created to help developers learn React. While it's hard to recommend resources that will fit your learning style, one invaluable reference is the [React Documentation](https://react.dev/) which contains interactive sandboxes to help you practice the topics.
+
+#### Learn Next.js by building a dashboard app
+
+Continue learning Next.js by [creating a dashboard app](https://nextjs.org/learn/dashboard-app) - this course will introduce you to the **main** Next.js features and get you practicing by building a more complex project.
