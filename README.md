@@ -11,14 +11,24 @@
       - [What is Next.js?](#what-is-nextjs)
     - [Chapter 2: Rendering User Interfaces (UI)](#chapter-2-rendering-user-interfaces-ui)
       - [What is the DOM?](#what-is-the-dom)
-    - [Chapter 3 Updating UI with Javascript](#chapter-3-updating-ui-with-javascript)
+    - [Chapter 3: Updating UI with Javascript](#chapter-3-updating-ui-with-javascript)
       - [HTML vs. the DOM](#html-vs-the-dom)
       - [Imperative vs. declarative programming](#imperative-vs-declarative-programming)
       - [React: A declarative UI library](#react-a-declarative-ui-library)
-    - [Chapter 4 Getting Started with React](#chapter-4-getting-started-with-react)
+    - [Chapter 4: Getting Started with React](#chapter-4-getting-started-with-react)
       - [What is JSX?](#what-is-jsx)
       - [Adding Babel to your project](#adding-babel-to-your-project)
       - [Essential JavaScript for React](#essential-javascript-for-react)
+    - [Chapter 5: Building UI with Components](#chapter-5-building-ui-with-components)
+      - [React core concepts](#react-core-concepts)
+      - [Components](#components)
+      - [Creating components](#creating-components)
+      - [Nesting components](#nesting-components)
+      - [Component trees](#component-trees)
+    - [Chapter 6: Displaying Data with Props](#chapter-6-displaying-data-with-props)
+      - [Using props](#using-props)
+      - [Using variables in JSX](#using-variables-in-jsx)
+      - [Iterating through lists](#iterating-through-lists)
 
 ## Learn React
 
@@ -118,11 +128,11 @@ by selecting, adding, updating, and deleting specific elements in the user inter
 
 In the next section you'll learn how to use JavaScript and DOM methods.
 
-**Additional Resources:**
-
-- [Introduction to the DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)
-- [How to view the DOM in Google Chrome](https://developer.chrome.com/docs/devtools/dom/)
-- [How to view the DOM in Firefox](https://developer.mozilla.org/docs/Tools/Debugger/How_to/Highlight_and_inspect_DOM_nodes)
+> **Additional Resources:**
+>
+> - [Introduction to the DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)
+> - [How to view the DOM in Google Chrome](https://developer.chrome.com/docs/devtools/dom/)
+> - [How to view the DOM in Firefox](https://developer.mozilla.org/docs/Tools/Debugger/How_to/Highlight_and_inspect_DOM_nodes)
 
 ### Chapter 3: Updating UI with Javascript
 
@@ -246,10 +256,10 @@ As a developer, you can tell React what you want to happen to the user interface
 
 In the next section, we'll explore how you can get started with React.
 
-**Additional Resources:**
-
-- [HTML vs. the DOM](https://developer.chrome.com/docs/devtools/dom/#appendix)
-- [How declarative UI compares to imperative](https://react.dev/learn/reacting-to-input-with-state#how-declarative-ui-compares-to-imperative)
+> **Additional Resources:**
+>
+> - [HTML vs. the DOM](https://developer.chrome.com/docs/devtools/dom/#appendix)
+> - [How declarative UI compares to imperative](https://react.dev/learn/reacting-to-input-with-state#how-declarative-ui-compares-to-imperative)
 
 ### Chapter 4: Getting Started with React
 
@@ -378,16 +388,16 @@ You can start to see how using React enables you to cut down a lot of repetitive
 
 And this is exactly what React does, it's a library that contains reusable snippets of code that perform tasks on your behalf - in this case, updating the UI.
 
-**Additional Resources:**
+> **Additional Resources:**
+>
+> You don't need to know exactly how React updates the UI to start using it, but if you'd like to learn more, here are some additional resources:
+>
+> - [UI trees](https://react.dev/learn/preserving-and-resetting-state#the-ui-tree)
+>
+> - [Writing markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
+> - [react-dom/server](https://react.dev/reference/react-dom/server) sections in the React Documentation.
 
-You don't need to know exactly how React updates the UI to start using it, but if you'd like to learn more, here are some additional resources:
-
-- [UI trees](https://react.dev/learn/preserving-and-resetting-state#the-ui-tree)
-
-- [Writing markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
-- [react-dom/server](https://react.dev/reference/react-dom/server) sections in the React Documentation.
-
-#### [Essential JavaScript for React](https://nextjs.org/learn/react-foundations/getting-started-with-react#essential-javascript-for-react)
+#### Essential JavaScript for React
 
 While you can learn JavaScript and React at the same time, being familiar with JavaScript can make the process of learning React easier.
 
@@ -402,3 +412,427 @@ In the next sections, you will be introduced to some core concepts of React from
 - [ES Modules and Import / Export Syntax](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules)
 
 While this course does not dive into JavaScript, it's good practice to stay up to date with the latest versions of JavaScript. But if you don't feel proficient in JavaScript yet, don't let this hinder you from starting to build with React!
+
+### Chapter 5: Building UI with Components
+
+#### React core concepts
+
+There are three core concepts of React that you'll need to be familiar with to start building React applications. These are:
+
+- Components
+- Props
+- State
+
+In the next chapters, we will go through these concepts and provide resources where you can continue learning them. After you're familiar with these concepts, we'll then show you how to install Next.js and use newer React features such as Server and Client Components.
+
+#### Components
+
+User interfaces can be broken down into smaller building blocks called **components**.
+
+Components allow you to build self-contained, reusable snippets of code. If you think of components as **LEGO bricks**, you can take these individual bricks and combine them together to form larger structures. If you need to update a piece of the UI, you can update the specific component or brick.
+
+![Example of a Media Component made up of 3 smaller components: image, text, and button](https://nextjs.org/_next/image?url=%2Flearn%2Fdark%2Flearn-components.png&w=3840&q=75&dpl=dpl_C4eFQ3UMNdmnjK2STReJ5KTwdjDo)
+
+This modularity allows your code to be more maintainable as it grows because you can add, update, and delete components without touching the rest of our application.
+
+The nice thing about React components is that they are just JavaScript. Let's see how you can write a React component, from a JavaScript perspective:
+
+#### Creating components
+
+In React, components are **functions.** Inside your `script` tag, create a new function called `header`:
+
+```jsx
+// App.jsx
+  const app = document.getElementById("app") function header() {}
+  const root = ReactDOM.createRoot(app); root.render(<h1>
+    Develop. Preview. Ship.
+  </h1>);
+
+```
+
+A component is a function that **returns UI elements**. Inside the return statement of the function, you can write JSX:
+
+```jsx
+// App.jsx
+
+const app = document.getElementById("app");
+
+function header() {
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+
+const root = ReactDOM.createRoot(app);
+root.render(<h1>Develop. Preview. Ship.</h1>);
+```
+
+To render this component to the DOM, pass it as the first argument in the `root.render()` method:
+
+```jsx
+// App.jsx
+
+const app = document.getElementById("app");
+
+function header() {
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+
+const root = ReactDOM.createRoot(app);
+root.render(header);
+```
+
+But, wait a second. If you try to run the code above in your browser, you'll get an error. To get this to work, there are two things you have to do:
+
+First, React components should be capitalized to distinguish them from plain HTML and JavaScript:
+
+```jsx
+// App.jsx
+function Header() {
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+
+const root = ReactDOM.createRoot(app);
+// Capitalize the React Component
+root.render(Header);
+```
+
+Second, you use React components the same way you'd use regular HTML tags, with angle brackets `<>`:
+
+```jsx
+// App.jsx
+function Header() {
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+
+const root = ReactDOM.createRoot(app);
+root.render(<Header />);
+```
+
+If you try to run the code in your browser again, you'll see your changes.
+
+#### Nesting components
+
+Applications usually include more content than a single component. You can **nest** React components inside each other like you would regular HTML elements.
+
+In your example, create a new component called `HomePage`:
+
+```jsx
+// App.jsx
+function Header() {
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+
+function HomePage() {
+  return <div></div>;
+}
+
+const root = ReactDOM.createRoot(app);
+root.render(<Header />);
+```
+
+Then nest the `<Header>` component inside the new `<HomePage>`component:
+
+```jsx
+// App.jsx
+function Header() {
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+
+function HomePage() {
+  return (
+    <div>
+      {/* Nesting the Header component */}
+      <Header />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(app);
+root.render(<Header />);
+```
+
+#### Component trees
+
+You can keep nesting React components this way to form component trees.
+
+![Component tree showing how components can be nested inside each other](https://nextjs.org/_next/image?url=%2Flearn%2Fdark%2Flearn-component-tree.png&w=3840&q=75&dpl=dpl_C4eFQ3UMNdmnjK2STReJ5KTwdjDo)
+
+For example, your top-level `HomePage` component could hold a `Header`, an `Article`, and a `Footer` Component. And each of those components could in turn have their own child components and so on. For example, the `Header` component could contain a `Logo`, `Title` and `Navigation` component.
+
+This modular format allows you to reuse components in different places inside your app.
+
+In your project, since `<HomePage>` is now your top-level component, you can pass it to the `root.render()` method:
+
+```jsx
+// App.jsx
+function Header() {
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+
+function HomePage() {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(app);
+root.render(<HomePage />);
+```
+
+> **Additional Resources:**
+>
+> - [Your first component](https://react.dev/learn/your-first-component)
+> - [Importing and exporting components](https://react.dev/learn/importing-and-exporting-components)
+
+### Chapter 6: Displaying Data with Props
+
+So far, if you were to reuse your `<Header />` component, it would display the same content both times.
+
+```jsx
+// App.jsx
+function Header() {
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+
+function HomePage() {
+  return (
+    <div>
+      <Header />
+      <Header />
+    </div>
+  );
+}
+```
+
+But what if you want to pass different text or you don't know the information ahead of time because you're fetching data from an external source?
+
+Regular HTML elements have attributes that you can use to pass pieces of information that change the behavior of those elements. For example, changing the `src` attribute of an `<img>` element changes the image that is shown. Changing the `href` attribute of an `<a>` tag changes the destination of the link.
+
+In the same way, you can pass pieces of information as properties to React components. These are called `props`. Take for instance, the possible variations of a button:
+
+![Diagram showing 3 variations of a button component: Primary, Secondary, and Disabled](https://nextjs.org/_next/image?url=%2Flearn%2Fdark%2Flearn-props.png&w=3840&q=75&dpl=dpl_C4eFQ3UMNdmnjK2STReJ5KTwdjDo)
+
+Similar to a JavaScript function, you can design components that accept custom arguments (or props) that change the component's behavior or what is visibly shown when it's rendered to the screen. Then, you can pass down these props from parent components to child components.
+
+> **Note:** In React, data flows down the component tree. This is referred to as _one-way data flow_. State, which will be discussed in the next chapter, can be passed from parent to child components as props.
+
+#### Using props
+
+In your `HomePage` component, you can pass a custom `title` prop to the `Header` component, just like you'd pass HTML attributes:
+
+```jsx
+// App.jsx
+function HomePage() {
+  return (
+    <div>
+      <Header title="React" />
+    </div>
+  );
+}
+```
+
+And `Header`, the child component, can accept those props as its first **function parameter**:
+
+```jsx
+// App.jsx
+function Header(props) {
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+```
+
+If you `console.log()` props, you can see that it's an **object** with a title property.
+
+```jsx
+// App.jsx
+function Header(props) {
+  console.log(props); // { title: "React" }
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+```
+
+Since props is an object, you can use [**object destructuring**](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to explicitly name the values of props inside your function parameters:
+
+```jsx
+// App.jsx
+function Header({ title }) {
+  console.log(title); // "React"
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+```
+
+Then you can replace the content of the `<h1>` tag with your title variable.
+
+```jsx
+// App.jsx
+function Header({ title }) {
+  console.log(title);
+  return <h1>title</h1>;
+}
+```
+
+If you open your file in the browser, you will see that it is displaying the actual word "title". This is because React thinks you're intending to render a plain text string to the DOM.
+
+You need a way to tell React that this is a JavaScript variable.
+
+#### Using variables in JSX
+
+To use the `title` prop, add **curly braces** `{}`. These are a special JSX syntax that allows you to write regular JavaScript directly inside your JSX markup.
+
+```jsx
+// App.jsx
+function Header({ title }) {
+  console.log(title);
+  return <h1>{title}</h1>;
+}
+```
+
+You can think of curly braces as a way to enter "JavaScript land" while you are in "JSX land". You can add any **JavaScript expression** (something that evaluates to a single value) inside curly braces. For example:
+
+1. An **object property** with dot notation:
+
+   ```jsx
+   // App.jsx
+   function Header(props) {
+     return <h1>{props.title}</h1>;
+   }
+   ```
+
+2. A **template literal**:
+
+   ```jsx
+   // App.jsx
+   function Header({ title }) {
+     return <h1>{`Cool ${title}`}</h1>;
+   }
+   ```
+
+3. The **returned value of a function**:
+
+   ```jsx
+   // App.jsx
+   function createTitle(title) {
+     if (title) {
+       return title;
+     } else {
+       return "Default title";
+     }
+   }
+
+   function Header({ title }) {
+     return <h1>{createTitle(title)}</h1>;
+   }
+   ```
+
+4. Or **ternary operators**:
+
+   ```jsx
+   // App.jsx
+   function Header({ title }) {
+     return <h1>{title ? title : "Default Title"}</h1>;
+   }
+   ```
+
+You can now pass any string to your title prop, or, if you used the ternary operator, you could even not pass a title prop at all, since you've accounted for the default case in your component:
+
+```jsx
+// App.jsx
+function Header({ title }) {
+  return <h1>{title ? title : "Default title"}</h1>;
+}
+
+function HomePage() {
+  return (
+    <div>
+      <Header />
+    </div>
+  );
+}
+```
+
+Your component now accepts a generic title prop which you can reuse in different parts of your application. All you need to do is change the title string:
+
+```jsx
+// App.jsx
+function HomePage() {
+  return (
+    <div>
+      <Header title="React" />
+      <Header title="A new title" />
+    </div>
+  );
+}
+```
+
+#### [Iterating through lists](https://nextjs.org/learn/react-foundations/displaying-data-with-props#iterating-through-lists)
+
+It's common to have data that you need to show as a list. You can use array methods to manipulate your data and generate UI elements that are identical in style but hold different pieces of information.
+
+Add the following array of names to your `HomePage` component:
+
+```jsx
+// App.jsx
+function HomePage() {
+  const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"];
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship." />
+      <ul>
+        {names.map((name) => (
+          <li>{name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+You can then use the `array.map()` method to iterate over the array and use an **arrow function** to map a name to a list item:
+
+```jsx
+// App.jsx
+function HomePage() {
+  const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"];
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship." />
+      <ul>
+        {names.map((name) => (
+          <li>{name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+Notice how you've used curly braces to weave in and out of "JavaScript" and "JSX" land.
+
+If you run this code, React will give us a warning about a missing `key` prop. This is because React needs something to uniquely identify items in an array so it knows which elements to update in the DOM.
+
+You can use the names for now since they are currently unique, but it's recommended to use something guaranteed to be unique, like an item ID.
+
+```jsx
+// App.jsx
+function HomePage() {
+  const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"];
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship." />
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+> **Additional Resources:**
+>
+> - [Passing props to a component](https://react.dev/learn/passing-props-to-a-component)
+> - [Rendering lists](https://react.dev/learn/rendering-lists)[Conditional rendering](https://react.dev/learn/conditional-rendering)
