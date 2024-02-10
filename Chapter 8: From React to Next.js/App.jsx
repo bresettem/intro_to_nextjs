@@ -1,12 +1,15 @@
-function Header(props) {
-  return <h1>{props.title}</h1>;
+const app = document.getElementById("app");
+
+function Header({ title }) {
+  return <h1>{title ? title : "Default title"}</h1>;
 }
 
 function HomePage() {
   const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"];
+
   const [likes, setLikes] = React.useState(0);
+
   function handleClick() {
-    console.log("increment like count");
     setLikes(likes + 1);
   }
 
@@ -18,10 +21,11 @@ function HomePage() {
           <li key={name}>{name}</li>
         ))}
       </ul>
+
       <button onClick={handleClick}>Like ({likes})</button>
     </div>
   );
 }
-const app = document.getElementById("app");
+
 const root = ReactDOM.createRoot(app);
 root.render(<HomePage />);
