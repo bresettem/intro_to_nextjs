@@ -27,8 +27,8 @@ export default async function RevenueChart() {
       </h2>
       {/* NOTE: comment in this code when you get to this point in the course */}
 
-      <div className="rounded-xl bg-gray-50 p-4">
-        <div className="mt-0 grid grid-cols-12 items-end gap-2 rounded-md bg-white p-4 sm:grid-cols-13 md:gap-4">
+      <div className="rounded-xl bg-gray-50 p-4 dark:bg-slate-700 dark:bg-slate-800">
+        <div className="mt-0 grid grid-cols-12 items-end gap-2 rounded-md bg-white p-4 dark:bg-slate-800 sm:grid-cols-13 md:gap-4">
           <div
             className="mb-6 hidden flex-col justify-between text-sm text-gray-400 sm:flex"
             style={{ height: `${chartHeight}px` }}
@@ -53,8 +53,10 @@ export default async function RevenueChart() {
           ))}
         </div>
         <div className="flex items-center pb-2 pt-6">
-          <CalendarIcon className="h-5 w-5 text-gray-500" />
-          <h3 className="ml-2 text-sm text-gray-500 ">Last 12 months</h3>
+          <CalendarIcon className="h-5 w-5 text-gray-500 dark:text-blue-200 " />
+          <h3 className="ml-2 text-sm text-gray-500 dark:text-blue-200  ">
+            Last 12 months
+          </h3>
         </div>
       </div>
     </div>
